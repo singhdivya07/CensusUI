@@ -1,0 +1,15 @@
+.view_member
+{
+    display:"flex";
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: gray;
+     height:100vh
+}
+
+.view_member_body
+{
+    padding:"10px";
+    color:"white"
+}
