@@ -2,27 +2,40 @@ import React, { Component } from 'react';
 import MemberService from '../../Services/MemberService';
 import './Style/createMember.css';
 
+
+
+const initialState = {
+    applicationId:"",
+    firstName:"",
+    lastName:"",
+    gender:"",
+    dob: "",
+    educationDetails:"",
+    maritalStatus:"",
+    relationship: "",
+
+    firstNameError:"",
+    lastNameError:"",
+    genderError:"",
+    dobError:"",
+    educationDetailsError:"",
+    maritalStatusError:"",
+    relationshipError:""
+}
+
 class CreateMemberComponent extends Component {
+   
+    state = initialState;
     constructor(props) {
         super(props);
-        this.state = {
-                applicationId:'',
-                firstName:'',
-                lastName:'',
-                gender:'',
-                dob: '',
-                educationDetails:'',
-                maritalStatus:'',
-                relationship: ''
         
-        }
-        this.changeMemberFirstNameHandler= this.changeMemberFirstNameHandler.bind(this);
-        this.changeMemberLastNameHandler= this.changeMemberLastNameHandler.bind(this);
-        this.changeGenderHandler = this.changeGenderHandler.bind(this);
-        this.changeEducationDetailsHandler = this.changeEducationDetailsHandler.bind(this);
-        this.changeDobHandler= this.changeDobHandler.bind(this);
-        this.changeMaritalStatusHandler = this.changeMaritalStatusHandler.bind(this);
-        this.changeRelationshipHandler = this.changeRelationshipHandler.bind(this);
+        // this.changeMemberFirstNameHandler= this.changeMemberFirstNameHandler.bind(this);
+        // this.changeMemberLastNameHandler= this.changeMemberLastNameHandler.bind(this);
+        // this.changeGenderHandler = this.changeGenderHandler.bind(this);
+        // this.changeEducationDetailsHandler = this.changeEducationDetailsHandler.bind(this);
+        // this.changeDobHandler= this.changeDobHandler.bind(this);
+        // this.changeMaritalStatusHandler = this.changeMaritalStatusHandler.bind(this);
+        // this.changeRelationshipHandler = this.changeRelationshipHandler.bind(this);
        
         this.saveMemberInformation = this.saveMemberInformation.bind(this);
     }     
@@ -34,9 +47,78 @@ class CreateMemberComponent extends Component {
             })
         }
     }
+
+    handleChange = event => {
+        const isCheckbox = event.target.type === "checkbox";
+        this.setState({
+          [event.target.name]: isCheckbox
+            ? event.target.checked
+            : event.target.value
+        });
+      };
+
+    validate = () =>{
+     let firstNameError="";
+     let lastNameError="";
+     let genderError="";
+     let dobError="";
+     let educationDetailsError="";
+     let maritalStatusError="";
+     let relationshipError="";
+
+    var name =/^[a-zA-Z]+$/;
+    var date = /^[0-9]{4}[-][0-9]{2}[-][0-9]{2}/
+    
+    if(!this.state.firstName){
+        firstNameError="First Name Cannot be empty";
+    }else if(this.state.firstName.length <4){
+        firstNameError="first name must be atleast 3 characters long";}
+    else if(!name.test(this.state.firstName)){
+        firstNameError="First Name must contain only alphabets ";
+    }    
+     
+    if(!this.state.lastName){
+        lastNameError="last Name Cannot be empty";
+    }else if(this.state.lastName.length <4){
+        lastNameError="Last name must be atleast 3 characters long";}
+        else if(!name.test(this.state.lastName)){
+            lastNameError="Last Name must contain only alphabets ";
+        }   
+      
+    if(!this.state.gender){
+        genderError="Gender Cannot be Empty.. Please select any one gender";
+    }    
+
+    if(!this.state.dob){
+        dobError="Date of Birth Cannot be empty.. Please fill details";
+    }else if(!date.test(this.state.dob)){
+        dobError="Please Enter Date in [yyyy-DD-MM] format";
+    }
+
+    if(!this.state.educationDetails){
+        educationDetailsError="Education Details Cannot be Empty.. Please fill Education Details";
+    }
+
+    if(!this.state.maritalStatus){
+        maritalStatusError="Marital Status Cannot be Empty... Please select any one option";
+    }
+
+    if(!this.state.relationship){
+        relationshipError="Relationship Cannot be Empty... Please select any one option";
+    }
+
+     if(firstNameError||lastNameError||genderError||dobError||educationDetailsError||maritalStatusError||relationshipError){
+         this.setState({firstNameError,lastNameError,genderError,dobError,educationDetailsError,maritalStatusError,relationshipError});
+         return false;
+     }
+     return true;
+    };
+
     saveMemberInformation = (e)=>{
         console.log("before passing to create member api application is:"+this.state.applicationId)
         e.preventDefault();
+        const isValid = this.validate();
+        if(isValid){
         let member ={ 
              
             firstName: this.state.firstName, 
@@ -53,39 +135,44 @@ class CreateMemberComponent extends Component {
         .then(res =>{
             this.props.history.push('/member');
         })
-    }  
 
+        //clear the form
+        this.setState(initialState);
+
+        }
+    }  
+   
     cancel(){
         this.props.history.push('/member');
     }
 
-    changeMemberFirstNameHandler = (event) =>{
-        this.setState({firstName: event.target.value});
-    }
+    // changeMemberFirstNameHandler = (event) =>{
+    //     this.setState({firstName: event.target.value});
+    // }
 
-    changeMemberLastNameHandler = (event) =>{
-        this.setState({lastName: event.target.value});
-    }
+    // changeMemberLastNameHandler = (event) =>{
+    //     this.setState({lastName: event.target.value});
+    // }
 
-    changeGenderHandler = (event) =>{
-        this.setState({gender: event.target.value});
-    }
+    // changeGenderHandler = (event) =>{
+    //     this.setState({gender: event.target.value});
+    // }
 
-    changeDobHandler = (event) =>{
-        this.setState({dob: event.target.value});
-    }
+    // changeDobHandler = (event) =>{
+    //     this.setState({dob: event.target.value});
+    // }
 
-    changeEducationDetailsHandler = (event) =>{
-        this.setState({educationDetails: event.target.value});
-    }
+    // changeEducationDetailsHandler = (event) =>{
+    //     this.setState({educationDetails: event.target.value});
+    // }
 
-    changeMaritalStatusHandler = (event) =>{
-        this.setState({maritalStatus: event.target.value});
-    }
+    // changeMaritalStatusHandler = (event) =>{
+    //     this.setState({maritalStatus: event.target.value});
+    // }
 
-    changeRelationshipHandler = (event) =>{
-        this.setState({relationship: event.target.value});
-    }
+    // changeRelationshipHandler = (event) =>{
+    //     this.setState({relationship: event.target.value});
+    // }
 
     render() {
         return (
@@ -94,19 +181,21 @@ class CreateMemberComponent extends Component {
             <div className="create_member"> 
                        <div className="createForm">
                             <div className = "createForm_body"> 
-                                <form >
+                                <form onSubmit={this.saveMemberInformation}>
                                     <div className="form-group"> 
                                         <label><b>Enter First Name:</b></label>
                                         <input placeholder="First Name" name="firstName"
                                             className="form-control" value = {this.state.firstName} 
-                                            onChange = {this.changeMemberFirstNameHandler}/>
+                                            onChange = {this.handleChange} />
+                                        <div style={{ fontSize: 12, color: "red" }}> {this.state.firstNameError}</div>    
                                     </div>
                                     
                                     <div className="form-group"> 
                                         <label><b>Enter Last Name:</b></label>
                                         <input placeholder="Last Name" name="lastName"
                                             className="form-control" value = {this.state.lastName} 
-                                            onChange = {this.changeMemberLastNameHandler}/>
+                                            onChange = {this.handleChange}/>
+                                        <div style={{ fontSize: 12, color: "red" }}> {this.state.lastNameError} </div>    
                                     </div>
                                     
                                     <div className="form-group">
@@ -114,22 +203,24 @@ class CreateMemberComponent extends Component {
                                         
                                         <div class="radio">
                                             <label>
-                                            <input type="radio"value="1"
+                                            <input type="radio" value="1" name="gender"
                                             checked={this.state.gender === "1"}
-                                            onChange = {this.changeGenderHandler}/>Female
+                                            onChange = {this.handleChange}/>Female
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                            <input type="radio"value="0"
+                                            <input type="radio" value="0" name="gender"
                                             checked={this.state.gender === "0"}
-                                            onChange = {this.changeGenderHandler}/>Male
+                                            onChange = {this.handleChange}/>Male
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                            <input type="radio"value="2"
+                                            <input type="radio" value="2" name="gender"
                                             checked={this.state.gender === "2"}
-                                            onChange = {this.changeGenderHandler}/>Other
+                                            onChange = {this.handleChange}/>Other
                                             </label>
+
+                                           <div style={{ fontSize: 12, color: "red" }}> {this.state.genderError}  </div>
                                         </div>
                                     
                                     </div> 
@@ -139,7 +230,8 @@ class CreateMemberComponent extends Component {
                                         <label><b>Enter BirthDate(yyyy-mm-dd):</b></label>
                                         <input placeholder="BirthDate" name="dob"
                                             className="form-control" value = {this.state.dob} 
-                                            onChange = {this.changeDobHandler}/>
+                                            onChange = {this.handleChange}/>
+                                        <div style={{ fontSize: 12, color: "red" }}> {this.state.dobError}  </div>    
                                     </div>
 
 
@@ -148,7 +240,8 @@ class CreateMemberComponent extends Component {
                                         <label><b>Enter Education Details:</b></label>
                                         <input placeholder="Education Details" name="educationDetails"
                                             className="form-control" value = {this.state.educationDetails} 
-                                            onChange = {this.changeEducationDetailsHandler}/>
+                                            onChange = {this.handleChange}/>
+                                        <div style={{ fontSize: 12, color: "red" }}> {this.state.educationDetailsError} </div>    
                                     </div>
 
                                     <div className="form-group"> 
@@ -156,16 +249,17 @@ class CreateMemberComponent extends Component {
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <div class="radio">
                                             <label>
-                                            <input type="radio"value="0"
+                                            <input type="radio" value="0" name="maritalStatus"
                                             checked={this.state.maritalStatus === "0"}
-                                            onChange={this.changeMaritalStatusHandler}/>Married
+                                            onChange={this.handleChange}/>Married
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                            <input type="radio"value="1"
+                                            <input type="radio" value="1" name="maritalStatus"
                                             checked={this.state.maritalStatus === "1"}
-                                            onChange={this.changeMaritalStatusHandler}/>Unmarried
+                                            onChange={this.handleChange}/>Unmarried
                                             </label>
+                                            <div style={{ fontSize: 12, color: "red" }}> {this.state.maritalStatusError}  </div>   
                                          </div>
                                     </div>
 
@@ -174,35 +268,36 @@ class CreateMemberComponent extends Component {
                                         
                                         <div class="radio">
                                             <label>
-                                            <input type="radio"value="0"
+                                            <input type="radio"value="0" name="relationship"
                                             checked={this.state.relationship === "0"}
-                                            onChange={this.changeRelationshipHandler}/>Mother
+                                             onChange={this.handleChange}/>Mother
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                            <input type="radio"value="1"
+                                            <input type="radio"value="1" name="relationship"
                                             checked={this.state.relationship === "1"}
-                                            onChange={this.changeRelationshipHandler}/>Father
+                                             onChange={this.handleChange}/>Father
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                            <input type="radio"value="2"
+                                            <input type="radio"value="2" name="relationship"
                                             checked={this.state.relationship === "2"}
-                                            onChange={this.changeRelationshipHandler}/>Son
+                                             onChange={this.handleChange}/>Son
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                            <input type="radio"value="3"
+                                            <input type="radio"value="3" name="relationship"
                                             checked={this.state.relationship === "3"}
-                                            onChange={this.changeRelationshipHandler}/>Daughter
+                                             onChange={this.handleChange}/>Daughter
                                             </label>
+                                            <div style={{ fontSize: 12, color: "red" }}> {this.state.relationshipError}  </div>  
                                         </div>
 
 
                                     </div> 
                                     <div className="create_member_Buttons">
 
-                                    <button className = "btn btn-success"  onClick = {this.saveMemberInformation}><i class="far fa-check-circle"></i>&nbsp;&nbsp;Save</button>
+                                    <button className = "btn btn-success" ><i class="far fa-check-circle"></i>&nbsp;&nbsp;Save</button>
                                     <button className = "btn btn-danger" onClick = {this.cancel.bind(this)}><i class="far fa-times-circle"></i>&nbsp;&nbsp;Cancel</button>
                                     </div>
                                 </form>
