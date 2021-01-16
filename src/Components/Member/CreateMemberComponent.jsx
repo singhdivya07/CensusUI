@@ -6,10 +6,9 @@ class CreateMemberComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-                id:'',
+                applicationId:'',
                 firstName:'',
                 lastName:'',
-                age:'',
                 gender:'',
                 dob: '',
                 educationDetails:'',
@@ -19,7 +18,6 @@ class CreateMemberComponent extends Component {
         }
         this.changeMemberFirstNameHandler= this.changeMemberFirstNameHandler.bind(this);
         this.changeMemberLastNameHandler= this.changeMemberLastNameHandler.bind(this);
-        this.changeAgeHandler = this.changeAgeHandler.bind(this);
         this.changeGenderHandler = this.changeGenderHandler.bind(this);
         this.changeEducationDetailsHandler = this.changeEducationDetailsHandler.bind(this);
         this.changeDobHandler= this.changeDobHandler.bind(this);
@@ -28,16 +26,31 @@ class CreateMemberComponent extends Component {
        
         this.saveMemberInformation = this.saveMemberInformation.bind(this);
     }     
-
+    
+    componentDidMount() {
+        if (this.props.location.application) {
+            this.setState({
+                applicationId: this.props.location.application.applicationId,
+            })
+        }
+    }
     saveMemberInformation = (e)=>{
+        console.log("before passing to create member api application is:"+this.state.applicationId)
         e.preventDefault();
-        let memberInformation ={ id: null, firstName: this.state.firstName, 
-            LastName: this.state.LastName,age: this.state.age,gender: this.state.gender,
-            dob: this.state.dob,educationDetails: this.state.educationDetails, 
-            maritalStatus: this.state.maritalStatus, relationship: this.state.relationship
+        let member ={ 
+             
+            firstName: this.state.firstName, 
+            lastName: this.state.lastName,
+            gender: this.state.gender,
+            dob: this.state.dob,
+            educationDetails: this.state.educationDetails, 
+            maritalStatus:this.state.maritalStatus,
+            relationship: this.state.relationship
+            
         };
-        console.log(JSON.stringify(memberInformation));
-        MemberService.createMember(memberInformation).then(res =>{
+        console.log("member infor response"+JSON.stringify(member));
+        MemberService.createMember(this.state.applicationId,member)
+        .then(res =>{
             this.props.history.push('/member');
         })
     }  
@@ -52,10 +65,6 @@ class CreateMemberComponent extends Component {
 
     changeMemberLastNameHandler = (event) =>{
         this.setState({lastName: event.target.value});
-    }
-
-    changeAgeHandler = (event) =>{
-        this.setState({age: event.target.value});
     }
 
     changeGenderHandler = (event) =>{
@@ -83,13 +92,8 @@ class CreateMemberComponent extends Component {
             <div className="member"> 
             <h3 className="text-center">Add Member</h3> 
             <div className="create_member"> 
-                {/* <div className="container">*/}
-                    {/* <div className="row"> */}
-                    
-                        {/* <div className = "card col-md-8 offset-md-3 offset-md-3"> */}
                        <div className="createForm">
                             <div className = "createForm_body"> 
-                             {/* card-body */}
                                 <form >
                                     <div className="form-group"> 
                                         <label><b>Enter First Name:</b></label>
@@ -104,33 +108,26 @@ class CreateMemberComponent extends Component {
                                             className="form-control" value = {this.state.lastName} 
                                             onChange = {this.changeMemberLastNameHandler}/>
                                     </div>
-
-                                    <div className="form-group"> 
-                                        <label><b>Enter age:</b></label>
-                                        <input placeholder="Age" name="age"
-                                            className="form-control" value = {this.state.age} 
-                                            onChange = {this.changeAgeHandler}/>
-                                    </div>
                                     
                                     <div className="form-group">
                                         <label><b> Select Gender:</b></label>
                                         
                                         <div class="radio">
                                             <label>
-                                            <input type="radio"value="Female"
-                                            checked={this.state.gender === "Female"}
+                                            <input type="radio"value="1"
+                                            checked={this.state.gender === "1"}
                                             onChange = {this.changeGenderHandler}/>Female
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                            <input type="radio"value="Male"
-                                            checked={this.state.gender === "Male"}
+                                            <input type="radio"value="0"
+                                            checked={this.state.gender === "0"}
                                             onChange = {this.changeGenderHandler}/>Male
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                            <input type="radio"value="Other"
-                                            checked={this.state.gender === "Other"}
+                                            <input type="radio"value="2"
+                                            checked={this.state.gender === "2"}
                                             onChange = {this.changeGenderHandler}/>Other
                                             </label>
                                         </div>
@@ -159,14 +156,14 @@ class CreateMemberComponent extends Component {
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <div class="radio">
                                             <label>
-                                            <input type="radio"value="Married"
-                                            checked={this.state.maritalStatus === "Married"}
+                                            <input type="radio"value="0"
+                                            checked={this.state.maritalStatus === "0"}
                                             onChange={this.changeMaritalStatusHandler}/>Married
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                            <input type="radio"value="Unmarried"
-                                            checked={this.state.maritalStatus === "Unmarried"}
+                                            <input type="radio"value="1"
+                                            checked={this.state.maritalStatus === "1"}
                                             onChange={this.changeMaritalStatusHandler}/>Unmarried
                                             </label>
                                          </div>
@@ -177,26 +174,26 @@ class CreateMemberComponent extends Component {
                                         
                                         <div class="radio">
                                             <label>
-                                            <input type="radio"value="Mother"
-                                            checked={this.state.relationship === "Mother"}
+                                            <input type="radio"value="0"
+                                            checked={this.state.relationship === "0"}
                                             onChange={this.changeRelationshipHandler}/>Mother
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                            <input type="radio"value="Father"
-                                            checked={this.state.relationship === "Father"}
+                                            <input type="radio"value="1"
+                                            checked={this.state.relationship === "1"}
                                             onChange={this.changeRelationshipHandler}/>Father
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                            <input type="radio"value="Son"
-                                            checked={this.state.relationship === "Son"}
+                                            <input type="radio"value="2"
+                                            checked={this.state.relationship === "2"}
                                             onChange={this.changeRelationshipHandler}/>Son
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                            <input type="radio"value="Daughter"
-                                            checked={this.state.relationship === "Daughter"}
+                                            <input type="radio"value="3"
+                                            checked={this.state.relationship === "3"}
                                             onChange={this.changeRelationshipHandler}/>Daughter
                                             </label>
                                         </div>
@@ -211,9 +208,7 @@ class CreateMemberComponent extends Component {
                                 </form>
                                 </div>
                              </div>
-                        {/* </div> */}
-                   {/* </div>*/}
-                 </div>
+                        </div>
             </div>
         );
     }

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import MemberService from '../../Services/MemberService';
 
-class UpdateCreateComponent extends Component {
-    constructor(props) {
+class UpdateCreateComponent extends Component 
+{
+    constructor(props) 
+    {
         super(props);
         this.state = {
                 id:'',
@@ -30,30 +32,36 @@ class UpdateCreateComponent extends Component {
 
     componentDidMount(){
         MemberService.getEmployeeById(this.state.id).then((res)=>{
-            let memberInformation =  res.data;
+            let member =  res.data;
             this.setState({
-                id: memberInformation.id,
-                firstName: memberInformation.firstName,
-                lastName: memberInformation.lastName,
-                age: memberInformation.age,
-                gender: memberInformation.gender,
-                dob: memberInformation.dob,
-                educationDetails: memberInformation.educationDetails,
-                maritalStatus: memberInformation.maritalStatus,
-                relationship: memberInformation.relationship
+                id: member.id,
+                firstName: member.firstName,
+                lastName: member.lastName,
+                age: member.age,
+                gender: member.gender,
+                dob: member.dob,
+                educationDetails: member.educationDetails,
+                maritalStatus: member.maritalStatus,
+                relationship: member.relationship
             });
         });
     }
 
     updateMemberInformation = (e)=>{
         e.preventDefault();
-        let memberInformation ={ id: null, firstName: this.state.firstName, 
-            LastName: this.state.LastName,age: this.state.age,gender: this.state.gender,
-            dob: this.state.dob,educationDetails: this.state.educationDetails, 
-            maritalStatus: this.state.maritalStatus, relationship: this.state.relationship
+        let member ={ 
+            id: null, 
+            firstName: this.state.firstName, 
+            LastName: this.state.LastName,
+            age: this.state.age,
+            gender: this.state.gender,
+            dob: this.state.dob,
+            educationDetails: this.state.educationDetails, 
+            maritalStatus: this.state.maritalStatus, 
+            relationship: this.state.relationship
         };
-        console.log(JSON.stringify(memberInformation));
-       MemberService.updateMemberInformation(memberInformation,this.state.id).then((res) =>{
+        console.log(JSON.stringify(member));
+       MemberService.updateMember(member,this.state.id).then((res) =>{
             this.props.history.push('/member');
        });
     }  
@@ -131,19 +139,19 @@ class UpdateCreateComponent extends Component {
                                         <div class="radio">
                                             <label>
                                             <input type="radio"value="Female"
-                                            checked={this.state.memberInformation.gender === "Female"}
+                                            checked={this.state.gender === "Female"}
                                             onChange = {this.changeGenderHandler}/>Female
                                             </label>
 
                                             <label>
                                             <input type="radio"value="Male"
-                                            checked={this.state.memberInformation.gender === "Male"}
+                                            checked={this.state.gender === "Male"}
                                             onChange = {this.changeGenderHandler}/>Male
                                             </label>
                                         
                                             <label>
                                             <input type="radio"value="Other"
-                                            checked={this.state.memberInformation.gender === "Other"}
+                                            checked={this.state.gender === "Other"}
                                             onChange = {this.changeGenderHandler}/>Other
                                             </label>
                                         </div>
@@ -173,13 +181,13 @@ class UpdateCreateComponent extends Component {
                                         <div class="radio">
                                             <label>
                                             <input type="radio"value="Married"
-                                            checked={this.state.memberInformation.maritalStatus === "Married"}
+                                            checked={this.state.maritalStatus === "Married"}
                                             onChange={this.changeMaritalStatusHandler}/>Married
                                             </label>
                                     
                                             <label>
                                             <input type="radio"value="Unmarried"
-                                            checked={this.state.memberInformation.maritalStatus === "Unmarried"}
+                                            checked={this.state.maritalStatus === "Unmarried"}
                                             onChange={this.changeMaritalStatusHandler}/>Unmarried
                                             </label>
                                          </div>
@@ -191,25 +199,25 @@ class UpdateCreateComponent extends Component {
                                         <div class="radio">
                                             <label>
                                             <input type="radio"value="Mother"
-                                            checked={this.state.memberInformation.relationship === "Mother"}
+                                            checked={this.state.relationship === "Mother"}
                                             onChange={this.changeRelationshipHandler}/>Mother
                                             </label>
                                     
                                             <label>
                                             <input type="radio"value="Father"
-                                            checked={this.state.memberInformation.relationship === "Father"}
+                                            checked={this.state.relationship === "Father"}
                                             onChange={this.changeRelationshipHandler}/>Father
                                             </label>
                                     
                                             <label>
                                             <input type="radio"value="Son"
-                                            checked={this.state.memberInformation.relationship === "Son"}
+                                            checked={this.state.relationship === "Son"}
                                             onChange={this.changeRelationshipHandler}/>Son
                                             </label>
                                     
                                             <label>
                                             <input type="radio"value="Daughter"
-                                            checked={this.state.memberInformation.relationship === "Daughter"}
+                                            checked={this.state.relationship === "Daughter"}
                                             onChange={this.changeRelationshipHandler}/>Daughter
                                             </label>
                                         </div>
