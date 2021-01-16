@@ -45,9 +45,9 @@ h3 {
 }
 
 .logo-image {
-  width: 200px;
+  width: 400px;
   height: 152px;
-  /* margin-left: 60px; */
+  margin-left: 60px;
 }
 .sign-in {
   width: 60%;

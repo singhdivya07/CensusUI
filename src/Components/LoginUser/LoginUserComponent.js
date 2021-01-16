@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import './Style/LoginUserComponentStyle.css'
 import logo from '../../Images/logo.png';
 import LoginService from '../../Services/LoginService';
+import { createBrowserHistory } from 'history';
+
+export const history = createBrowserHistory();
 
 class LoginUserComponent extends Component {
 
@@ -11,25 +14,41 @@ class LoginUserComponent extends Component {
         this.state = {
             user: [],
             userId: "",
+            userName: "",
             password: "",
         }
+
         this.addUser = this.addUser.bind(this);
         this.loginUser = this.loginUser.bind(this);
         this.changeUserPasswordHandler = this.changeUserPasswordHandler.bind(this);
-        this.changeUserIdHandler = this.changeUserIdHandler.bind(this);
+        this.changeUserNameHandler = this.changeUserNameHandler.bind(this);
 
+    }
+
+    componentDidMount() {
+        if (this.props.location.user) {
+            this.setState({
+                userId: this.props.location.user.userId,
+            })
+        }
     }
 
     loginUser = (e) => {
         e.preventDefault();
         let user = {
-            userId: null, password: this.state.password,
+            userId: this.state.userId,
+            userName: this.state.userName,
+            password: this.state.password,
         }
         console.log(JSON.stringify(user));
         LoginService.login(user)
-            .then(res => {
-                this.props.history.push('/member');
-                console.log(JSON.stringify(res))
+            .then(userLoginResponse => {
+                this.props.history.push({
+
+                    pathname: '/member',
+                    user: { userId: userLoginResponse.data.response.userId }
+                });
+                console.log("login reponse" + JSON.stringify(userLoginResponse))
             })
     }
     addUser = () => {
@@ -38,9 +57,9 @@ class LoginUserComponent extends Component {
 
     /*event handlers*/
 
-    changeUserIdHandler = (event) => {
+    changeUserNameHandler = (event) => {
         this.setState({
-            userId: event.target.value
+            userName: event.target.value
         });
     }
     changeUserPasswordHandler = (event) => {
@@ -57,21 +76,21 @@ class LoginUserComponent extends Component {
                 </div>
 
                 <div class="loginUser_main">
-                    
-                        <h3 className="infoH3">Genealogy spreadsheets to record, preserve, and archive research data</h3>
-                    
+
+                    <h3 className="infoH3">Genealogy spreadsheets to record, preserve, and archive research data</h3>
+
 
                     <div className="col-lg-6 form-div">
                         <form className="sign-in" >
                             <h3>Sign In</h3>
 
                             <div className="form-group">
-                                <label>Email address</label>
-                                <input type="email"
+                                <label>User Name</label>
+                                <input type="text"
                                     className="form-control"
-                                    placeholder="Enter userId"
-                                    value={this.state.userId}
-                                    onChange={this.changeUserIdHandler} />
+                                    placeholder="Enter userName"
+                                    value={this.state.userName}
+                                    onChange={this.changeUserNameHandler} />
                             </div>
 
                             <div className="form-group">

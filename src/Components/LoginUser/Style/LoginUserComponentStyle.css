@@ -7,11 +7,11 @@ h3 {
   color: black;
 }
 
-.logo-image {
+/* .logo-image {
   /* width: 400px;
   height: 152px;
-  margin-left: 60px; */
-}
+  margin-left: 60px;}  */
+
 .sign-in {
   width: 80%;
   height: 100%;
@@ -20,29 +20,26 @@ h3 {
 .register-button {
   margin-left: 12px;
 }
-.form-div {
-  /* margin: 50px auto; */
-}
 .h3-div {
   width: 450px !important;
   margin: 100px auto;
 }
-.loginUser_main{
+.loginUser_main {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.infoH3{
-  width:400px;
-   font-size:20px;
-   margin:auto;
-   color:white;
-    padding:10px
+.infoH3 {
+  width: 400px;
+  font-size: 20px;
+  margin: auto;
+  color: white;
+  padding: 10px;
 }
-@media screen and(max-width: 650px){
-  .infoH3{
-    width:800px
+@media screen and(max-width: 650px) {
+  .infoH3 {
+    width: 800px;
   }
 }
