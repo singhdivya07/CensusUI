@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MemberService from '../../Services/MemberService';
+import Navigation from '../Header/Navigation';
 
 class ViewMemberComponent extends Component {
     constructor(props) {
@@ -21,7 +22,8 @@ class ViewMemberComponent extends Component {
     render() {
         return (
            
-            
+           <div>
+               <Navigation/>
             <div style={{
                         display:"flex",
                         alignItems:"center",
@@ -31,7 +33,7 @@ class ViewMemberComponent extends Component {
                         height:"100vh"}}> 
 
                     <h3 className = "text-center"  style={{padding:"10px", color:"white"}}>View Member Details</h3>
-                    
+
                <div className= "card col-md-6 offset-md-3">
                     <div className= "card-body">
                         <div className = "row">
@@ -75,7 +77,7 @@ class ViewMemberComponent extends Component {
                     </div>
                 </div>
             </div>
-
+            </div> 
         );
     }
 }

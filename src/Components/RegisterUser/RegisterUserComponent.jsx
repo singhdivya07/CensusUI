@@ -117,7 +117,7 @@ class RegisterUserComponent extends Component {
 
             
         cancel(){
-            this.props.history.push('/user');
+            this.props.history.push('/');
         }
 
         // changeUserNameHandler = (event) =>{
@@ -193,4 +193,3 @@ class RegisterUserComponent extends Component {
 }
 
 export default RegisterUserComponent;
-    
