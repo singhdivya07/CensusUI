@@ -113,7 +113,7 @@ class RegisterUserComponent extends Component {
 
             
         cancel(){
-            this.props.history.push('/user');
+            this.props.history.push('/');
         }
 
         render() {
@@ -176,4 +176,3 @@ class RegisterUserComponent extends Component {
 }
 
 export default RegisterUserComponent;
-    
