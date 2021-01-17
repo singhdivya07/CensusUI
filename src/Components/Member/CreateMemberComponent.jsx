@@ -119,6 +119,7 @@ class CreateMemberComponent extends Component {
         e.preventDefault();
         const isValid = this.validate();
         if(isValid){
+            alert(`${this.state.firstName} ${this.state.lastName} Registered Successfully !!!!`)
         let member ={ 
              
             firstName: this.state.firstName, 
