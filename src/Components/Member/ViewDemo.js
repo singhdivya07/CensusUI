@@ -45,9 +45,6 @@ class ViewDemo extends Component {
         return (
             <div className="row">
 
-                {/* <div className="row">
-                    <button className="btn btn-primary" onClick={this.addMemberInformation}>Add Employee</button>
-                </div> */}
 
                 {
                     this.state.memberInformation.map(

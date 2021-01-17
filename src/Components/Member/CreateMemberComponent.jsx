@@ -28,14 +28,7 @@ class CreateMemberComponent extends Component {
     state = initialState;
     constructor(props) {
         super(props);
-        
-        // this.changeMemberFirstNameHandler= this.changeMemberFirstNameHandler.bind(this);
-        // this.changeMemberLastNameHandler= this.changeMemberLastNameHandler.bind(this);
-        // this.changeGenderHandler = this.changeGenderHandler.bind(this);
-        // this.changeEducationDetailsHandler = this.changeEducationDetailsHandler.bind(this);
-        // this.changeDobHandler= this.changeDobHandler.bind(this);
-        // this.changeMaritalStatusHandler = this.changeMaritalStatusHandler.bind(this);
-        // this.changeRelationshipHandler = this.changeRelationshipHandler.bind(this);
+    
        
         this.saveMemberInformation = this.saveMemberInformation.bind(this);
     }     
@@ -146,34 +139,7 @@ class CreateMemberComponent extends Component {
         this.props.history.push('/member');
     }
 
-    // changeMemberFirstNameHandler = (event) =>{
-    //     this.setState({firstName: event.target.value});
-    // }
-
-    // changeMemberLastNameHandler = (event) =>{
-    //     this.setState({lastName: event.target.value});
-    // }
-
-    // changeGenderHandler = (event) =>{
-    //     this.setState({gender: event.target.value});
-    // }
-
-    // changeDobHandler = (event) =>{
-    //     this.setState({dob: event.target.value});
-    // }
-
-    // changeEducationDetailsHandler = (event) =>{
-    //     this.setState({educationDetails: event.target.value});
-    // }
-
-    // changeMaritalStatusHandler = (event) =>{
-    //     this.setState({maritalStatus: event.target.value});
-    // }
-
-    // changeRelationshipHandler = (event) =>{
-    //     this.setState({relationship: event.target.value});
-    // }
-
+    
     render() {
         return (
             <div className="member"> 

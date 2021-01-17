@@ -21,10 +21,6 @@ class RegisterUserComponent extends Component {
     constructor(props) {
         super(props);
         
-            
-            // this.changeUserNameHandler = this.changeUserNameHandler.bind(this);
-            // this.changePasswordHandler = this.changePasswordHandler.bind(this);
-            // this.changeRoleHandler = this.changeRoleHandler.bind(this);
             this.saveUser = this.saveUser.bind(this);
 
         }
@@ -119,19 +115,6 @@ class RegisterUserComponent extends Component {
         cancel(){
             this.props.history.push('/user');
         }
-
-        // changeUserNameHandler = (event) =>{
-        //     console.log("in changeUSerNameHandler..")
-        //     this.setState({userName: event.target.value});
-        // }
-    
-        // changePasswordHandler = (event) =>{
-        //     this.setState({password: event.target.value});
-        // }
-    
-        // changeRoleHandler = (event) =>{
-        //     this.setState({role: event.target.value});
-        // }
 
         render() {
             return (

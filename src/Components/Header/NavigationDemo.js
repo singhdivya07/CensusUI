@@ -22,8 +22,7 @@ export default class Navigation extends Component {
             <div className="container p-4">
                 <nav className="navbar navbar-expand-lg navbar-dark ">
 
-                    {/* <div class="brand"><a class="navbar-brand  " href=""><span aria-hidden="true"><i class="fas fa-paw fa-5x"></i></span> tindog </a></div> --> */}
-                    <div >
+                  <div >
                         <a className="navbar-brand main-logo" href="#home">
                             Census Profile Application
                         </a>
