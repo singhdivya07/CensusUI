@@ -7,17 +7,16 @@ import UpdateMemberComponent from './Components/Member/UpdateMemberComponent';
 import ViewMemberComponent from "./Components/Member/ViewMemberComponent";
 import RegisterUserComponent from './Components/RegisterUser/RegisterUserComponent';
 import LoginUserComponent from './Components/LoginUser/LoginUserComponent';
-import ViewDemo from './Components/Member/ViewDemo';
+
 
 
 
 function App() {
   return (
     <div className="App">
-      {/* <Navigation /> */}
+
       <Router>
         <div >
-
           <Switch>
             <Route path="/" exact component={LoginUserComponent}></Route>
             <Route path="/add-user" component={RegisterUserComponent}></Route>
@@ -31,7 +30,7 @@ function App() {
 
       </Router>
 
-    </div>
+    </div >
 
   );
 }

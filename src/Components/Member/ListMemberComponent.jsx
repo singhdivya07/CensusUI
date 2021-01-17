@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MemberService from '../../Services/MemberService';
 import { createBrowserHistory } from 'history';
 import './Style/listMember.css';
+import Navigation from '../Header/Navigation';
 export const history = createBrowserHistory();
 
 class ListMemberComponent extends Component{
@@ -35,6 +36,7 @@ class ListMemberComponent extends Component{
 
 
     addMemberInformation(){
+        
         this.props.history.push({
             pathname:'/add-member',
             application:{applicationId:this.state.applicationId}
@@ -61,6 +63,8 @@ class ListMemberComponent extends Component{
 
     render() {
         return (
+            <div>
+                <Navigation/>
         <div className="list_member">
                 <div className="list_member_heading">
                     <h2 className="h3" >Member List</h2>
@@ -116,6 +120,7 @@ class ListMemberComponent extends Component{
 
             </div>
              <button className="list_member_btn" onClick={this.addMemberInformation}>Add Member</button>
+         </div>
          </div>
          );
      }
