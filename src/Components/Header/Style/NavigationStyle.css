@@ -20,11 +20,11 @@ a {
   color: white !important;
 }
 
-/* .btn:hover {
+.btn:hover {
   transform: translatey(10px);
   box-shadow: none;
   background-image: linear-gradient(135deg, #993394 0%, #0011ff 100%);
-} */
+}
 
 .nav-item {
   padding: 0 18px;
