@@ -73,7 +73,9 @@ class RegisterUserComponent extends Component {
             e.preventDefault();
             const isValid = this.validate();
             if(isValid){
-                console.log("Success...");
+                console.log("Success...");  
+                alert(`${this.state.firstName} ${this.state.lastName} Registered Successfully !!!!`)
+ 
               let user ={ 
                 userName: this.state.userName, 
                 password: this.state.password,
