@@ -23,11 +23,6 @@ export default class Navigation extends Component {
                 <div className="container p-4">
                 {/* <div className="container"> */}
 
-<<<<<<< HEAD
-                    <div >
-                    <a class="app-name" href="">  <img className="logo-image" src={logo} alt="application-logo" /> </a>
-                </div>
-=======
                     <nav className="navbar navbar-expand-lg navbar-dark">
                     <div class="container-fluid">
 
@@ -47,13 +42,12 @@ export default class Navigation extends Component {
                             aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
->>>>>>> 56f96ade321e930dda3d29a3f2622d6a4f038bba
 
                         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                         
                             <form class="form-inline my-2 my-lg-0">
                                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                             </form>
 
                             <ul className="navbar-nav ml-auto">
