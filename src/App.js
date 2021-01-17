@@ -1,22 +1,18 @@
-import Footer from './Components/Footer/Footer';
-import Navigation from './Components/Header/Navigation';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import CreateMemberComponent from './Components/Member/CreateMemberComponent';
+import Footer from "./Components/Footer/Footer";
+import Navigation from "./Components/Header/Navigation";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import CreateMemberComponent from "./Components/Member/CreateMemberComponent";
 import ListMemberComponent from "./Components/Member/ListMemberComponent";
-import UpdateMemberComponent from './Components/Member/UpdateMemberComponent';
+import UpdateMemberComponent from "./Components/Member/UpdateMemberComponent";
 import ViewMemberComponent from "./Components/Member/ViewMemberComponent";
-import RegisterUserComponent from './Components/RegisterUser/RegisterUserComponent';
-import LoginUserComponent from './Components/LoginUser/LoginUserComponent';
-
-
-
+import RegisterUserComponent from "./Components/RegisterUser/RegisterUserComponent";
+import LoginUserComponent from "./Components/LoginUser/LoginUserComponent";
 
 function App() {
   return (
     <div className="App">
-
       <Router>
-        <div >
+        <div>
           <Switch>
             <Route path="/" exact component={LoginUserComponent}></Route>
             <Route path="/add-user" component={RegisterUserComponent}></Route>
@@ -26,12 +22,9 @@ function App() {
             <Route path="/view-member/:id" component={ViewMemberComponent}></Route>
           </Switch>
         </div>
-        {/* <FooterComponent /> */}
-
+        <Footer />
       </Router>
-
-    </div >
-
+    </div>
   );
 }
 export default App;

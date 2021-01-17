@@ -2,7 +2,7 @@
   width: 100%;
   margin: auto;
   padding: 20px;
-  background-color: gray;
+  background-color: #ccffee;
 }
 
 .list_member_tableB {
@@ -12,8 +12,6 @@
   overflow-x: auto;
 }
 
-.list_member_tRow {
-}
 .list_member_tRow th {
   width: 400px;
   text-align: center;
@@ -28,7 +26,7 @@
 }
 .list_member_heading {
   text-align: center;
-  background-color: purple;
+  background-color: #12193b;
   color: white;
   height: 7vh;
   margin: auto;
@@ -44,22 +42,17 @@
   cursor: pointer;
   font-size: 20px;
   color: white;
-  columns: #654890;
-  box-shadow: 0 20px 30px -6px rgba(171, 88, 219, 0.5);
-  background-image: linear-gradient(135deg, #33ccff 0%, #3333cc 100%);
+  background-color: black;
   transition: all 0.3s ease-in-out;
 }
 
 .list_member_btn:hover {
   transform: translatey(10px);
   box-shadow: none;
-  background-image: linear-gradient(135deg, #336699 0%, #00ffcc 100%);
 }
 
 @media screen and (max-width: 600px) {
   .list_member_tRow th {
-    /* width: 1000px; */
-    /* text-align: justify; */
     font-size: 15px;
     margin: 100px;
   }

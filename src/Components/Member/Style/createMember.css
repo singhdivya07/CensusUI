@@ -1,99 +1,90 @@
 .create_member {
-    /* text-align: left; */
-    background-color: grey;
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: #ccffee;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.createForm{
-    width: 80%;
-    margin: auto;
-    background-color: white;
-    margin-top: 10px;
+.createForm {
+  width: 80%;
+  margin: auto;
+  background-color: white;
+  margin-top: 10px;
 }
 
-.createForm_body{
-    width: 60%;
-    margin: auto;
+.createForm_body {
+  width: 60%;
+  margin: auto;
 }
-.button {
-    width: 150px;
-    height: 60px;
-    border-radius: 50px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    color: white;
-    columns: #654890;
-    box-shadow: 0 20px 30px -6px rgba(171, 88, 219, 0.5);
-    background-image: linear-gradient(135deg, #42ba96 0%, #33cc40 100%);
-    transition: all 0.3s ease-in-out;
+.create_text-center {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.5rem;
+  line-height: 1.5;
+  color: white;
+  margin-left: 5px !important;
+  background-color: #12193b !important;
+  text-align: center;
+  margin-top: auto;
 }
 
-.button:hover {
-    transform: translatey(10px);
-    box-shadow: none;
-    background-image: linear-gradient(135deg, #336699 0%, #00ffcc 100%);
+.create_btn:hover {
+  transform: translatey(10px);
+  box-shadow: none;
+  background-image: linear-gradient(135deg, #336699 0%, #00ffcc 100%);
 }
 
-.button:active {
-    opacity: 0.5;
+.create_btn:active {
+  opacity: 0.5;
 }
 
-.btn {
-    border-radius: 50px;
-    width: 150px;
-    height: 60px;
+.create_btn {
+  border-radius: 50px;
+  width: 150px;
+  height: 60px;
+  margin-bottom: 100px;
+  margin-top: 50px;
 }
 
-.create_member_Buttons{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.create_member_Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.btn-responsive {
-    white-space: normal !important;
-    word-wrap: break-word;
-    margin-left: 12px;
+.create_btn-responsive {
+  white-space: normal !important;
+  word-wrap: break-word;
+  margin-left: 12px;
 }
 
 .member {
-    /* text-align: center; */
-    
-    font-family: 'Montserrat', sans-serif;
-    /* background-color: #ffcc99; */
-    width: 100%;
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
 }
 
 .radio {
-    white-space: wrap;
+  white-space: wrap;
 }
 
 input[type="radio"] {
-    padding-left: 10px;
-    padding-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-@media screen and (max-width:600px) {
-    .btn {
-        border-radius: 30px;
-        width: 100px;
-        height: 30px;
-        font-size: small;
-        white-space: normal !important;
-        word-wrap: break-word;
-        
-    }
-    /*  */
-    .create_member{
-        font-size: 15px;
-    }
+@media screen and (max-width: 600px) {
+  .btn {
+    border-radius: 30px;
+    width: 100px;
+    height: 30px;
+    font-size: small;
+    white-space: normal !important;
+    word-wrap: break-word;
+  }
 
-    
+  .create_member {
+    font-size: 15px;
+  }
 }
