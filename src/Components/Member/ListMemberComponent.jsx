@@ -5,6 +5,7 @@ import './Style/listMember.css';
 import Navigation from '../Header/Navigation';
 export const history = createBrowserHistory();
 
+
 class ListMemberComponent extends Component {
     constructor(props) {
         super(props)
@@ -58,6 +59,10 @@ class ListMemberComponent extends Component {
 
     viewMemberInformation(memberId) {
         this.props.history.push(`/view-member/${memberId}`);
+    }
+    showStatistics = () => {
+        let path = '/statistics';
+        this.props.history.push(path);
     }
 
 
@@ -120,6 +125,7 @@ class ListMemberComponent extends Component {
 
                     </div>
                     <button className="list_member_btn" onClick={this.addMemberInformation}><i class="fas fa-user-plus">Add Member</i></button>
+                    <button className="list_member_btn" onClick={this.showStatistics}>Statistics</button>
                 </div>
             </div>
         );
