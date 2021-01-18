@@ -56,7 +56,7 @@ class ViewMemberComponent extends Component {
                         </div>
                         <div className = "row">
                             <label>BirthDate: </label>
-                            <div>{this.state.member.bod}</div>
+                            <div>{this.state.member.dob.toDateString}</div>
                         </div>
 
                         <div className = "row">

@@ -45,6 +45,11 @@ class ListMemberComponent extends Component{
         console.log(this.state.applicationId);
     }
 
+    showStatistics=()=> {
+        let path = '/statistics';
+       this.props.history.push(path);
+      }
+
     editMemberInformation(memberId){
         this.props.history.push(`/update-member/${memberId}`)
     }
@@ -102,7 +107,7 @@ class ListMemberComponent extends Component{
                                         <td>{member.maritalStatus}</td>
                                         <td>{member.relationship}</td>
                                         <td>
-                                            <button onClick = {()=>this.editMemberInformation(member.memberId)} className = "btn btn-info">Edit</button>
+                                            <button onClick = {()=>this.editMemberInformation(member.memberId)} className = "btn btn-info"><i class="fas fa-pencil-alt"></i></button>
                                         </td>
                                         <td>
                                             <button  style = {{marginLeft: "10px"}} onClick = {()=>this.deleteMemberInformation(member.memberId)} className = "btn btn-danger">Delete</button>
@@ -120,7 +125,9 @@ class ListMemberComponent extends Component{
 
             </div>
              <button className="list_member_btn" onClick={this.addMemberInformation}>Add Member</button>
+             <button className="list_member_btn" onClick={this.showStatistics}>Statistics</button>
          </div>
+         
          </div>
          );
      }

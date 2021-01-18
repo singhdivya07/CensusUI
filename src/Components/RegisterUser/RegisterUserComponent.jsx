@@ -86,7 +86,9 @@ class RegisterUserComponent extends Component {
             console.log("user object before passing to register api"+JSON.stringify(user));
             
             UserService.createUser(user).then(userRegisterResponse =>{
+                console.log("Inside push ")
                 this.props.history.push(
+                    
                     {
                         pathname:'/',
                         user:{userId:userRegisterResponse.data.userId}
@@ -107,7 +109,7 @@ class RegisterUserComponent extends Component {
 
                 //clear the form
             this.setState(initialState);
-
+            
             }
 
             
