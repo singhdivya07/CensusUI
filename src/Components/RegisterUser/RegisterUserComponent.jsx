@@ -74,7 +74,7 @@ class RegisterUserComponent extends Component {
             const isValid = this.validate();
             if(isValid){
                 console.log("Success...");  
-                alert(`${this.state.firstName} ${this.state.lastName} Registered Successfully !!!!`)
+                alert(`${this.state.userName} Registered Successfully !!!!`)
  
               let user ={ 
                 userName: this.state.userName, 
