@@ -10,7 +10,7 @@ const Footer = () => {
                 <a href="https://www.facebook.com/">  <i className="fab fa-facebook-square fa-3x footer-link">   </i></a>
                 <a href="https://www.linkedin.com/">  <i className="fab fa-linkedin fa-3x footer-link">          </i></a>
             </div>
-            <p>© Copyright 2018 Capgemini</p>
+            <p className="foot">© Copyright 2018 Capgemini</p>
         </footer>
 
     )

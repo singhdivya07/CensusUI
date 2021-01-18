@@ -1,29 +1,15 @@
-a {
+.nav-link {
   color: #000000 !important;
 }
 
-.container {
+.container.p-4 {
   max-width: 100% !important;
   background-color: rgb(3, 41, 34) !important;
 }
-.navbar {
-  max-width: 1300px !important;
-}
 
-/* p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 20px;
-} */
-.btn {
-  /* background-image: linear-gradient(135deg, #9842ba 0%, #cc3380 100%) !important; */
-  background-color: black;
+.navbtn {
+  background-color: black !important;
   color: white !important;
-}
-
-.btn:hover {
-  transform: translatey(10px);
-  box-shadow: none;
-  background-image: linear-gradient(135deg, #993394 0%, #0011ff 100%);
 }
 
 .nav-item {
@@ -33,31 +19,15 @@ a {
 }
 .nav-link {
   font-family: "Montserrat", sans-serif !important;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
 }
-.main-logo {
-  font-size: 40px !important;
-}
-
-/* 
-.vert-bar {
-  border-left: 2px solid black;
-  height: 40px;
-  display: flex;
-  margin-top: 10px !important;
-} */
-/* title  */
-/* .nav-item {
-  font-size: 5px !important; 
-  margin-left: 50px;
-
- /* color: #000000; }*/
 
 .navbar-nav a:hover {
   background-color: rgb(229, 238, 243);
   color: black;
 }
 
+<<<<<<< HEAD
 .logo-image {
   width: 400px;
   height: 152px;
@@ -72,12 +42,10 @@ a {
 .register-button {
   margin-left: 12px;
 }
+=======
+>>>>>>> f3579d2fd23a054641d88a0450d468c7843da1ca
 .form-div {
   margin: 50px auto;
-}
-.h3-div {
-  width: 450px !important;
-  margin: 100px auto;
 }
 
 .Navigation {
@@ -86,5 +54,17 @@ a {
 @media screen and (max-width: 480px) {
   .main-logo {
     font-size: 20px !important;
+  }
+  .navbtn {
+    border-radius: 30px;
+    width: auto;
+    height: 30px;
+    font-size: small;
+    white-space: normal !important;
+    word-wrap: break-word;
+  }
+
+  .form-control {
+    display: block;
   }
 }
