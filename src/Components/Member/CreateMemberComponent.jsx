@@ -62,6 +62,7 @@ class CreateMemberComponent extends Component {
     var name =/^[a-zA-Z]+$/;
     var date = /^[0-9]{4}[-][0-9]{2}[-][0-9]{2}/
     
+    console.log(this.state.dob - date);
     if(!this.state.firstName){
         firstNameError="First Name Cannot be empty";
     }else if(this.state.firstName.length <4){
@@ -86,6 +87,8 @@ class CreateMemberComponent extends Component {
         dobError="Date of Birth Cannot be empty.. Please fill details";
     }else if(!date.test(this.state.dob)){
         dobError="Please Enter Date in [yyyy-DD-MM] format";
+    }else if(this.state.dob - date >125){
+        dobError = "Invalid Date";
     }
 
     if(!this.state.educationDetails){

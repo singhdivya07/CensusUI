@@ -20,7 +20,8 @@ const initialState = {
     dobError:"",
     educationDetailsError:"",
     maritalStatusError:"",
-    relationshipError:""
+    relationshipError:"",
+    ageError:"",
 }
 
 class UpdateCreateComponent extends Component 
@@ -59,6 +60,7 @@ class UpdateCreateComponent extends Component
         let educationDetailsError="";
         let maritalStatusError="";
         let relationshipError="";
+        let ageError="";
    
        var name =/^[a-zA-Z]+$/;
        var date = /^[0-9]{4}[-][0-9]{2}[-][0-9]{2}/
@@ -78,7 +80,13 @@ class UpdateCreateComponent extends Component
            else if(!name.test(this.state.lastName)){
                lastNameError="Last Name must contain only alphabets ";
            }   
-         
+        
+        if(!this.state.age){
+            ageError="Age Cannot be Empty";
+        }else if(this.state.age < 125){
+            ageError="Age Cannot be greater than 125 yrs !";
+        }   
+
        if(!this.state.gender){
            genderError="Gender Cannot be Empty.. Please select any one gender";
        }    
@@ -101,8 +109,8 @@ class UpdateCreateComponent extends Component
            relationshipError="Relationship Cannot be Empty... Please select any one option";
        }
    
-        if(firstNameError||lastNameError||genderError||dobError||educationDetailsError||maritalStatusError||relationshipError){
-            this.setState({firstNameError,lastNameError,genderError,dobError,educationDetailsError,maritalStatusError,relationshipError});
+        if(firstNameError||lastNameError||genderError||ageError||dobError||educationDetailsError||maritalStatusError||relationshipError){
+            this.setState({firstNameError,lastNameError,ageError,genderError,dobError,educationDetailsError,maritalStatusError,relationshipError});
             return false;
         }
         return true;
@@ -154,39 +162,7 @@ class UpdateCreateComponent extends Component
         this.props.history.push('/member');
     }
 
-    // changeMemberFirstNameHandler = (event) =>{
-    //     this.setState({firstName: event.target.value});
-    // }
-
-    // changeMemberLastNameHandler = (event) =>{
-    //     this.setState({lastName: event.target.value});
-    // }
-
-    // changeAgeHandler = (event) =>{
-    //     this.setState({age: event.target.value});
-    // }
-
-    // changeGenderHandler = (event) =>{
-    //     this.setState({gender: event.target.value});
-    // }
-
-    // changeDobHandler = (event) =>{
-    //     this.setState({dob: event.target.value});
-    // }
-
-    // changeEducationDetailsHandler = (event) =>{
-    //     this.setState({educationDetails: event.target.value});
-    // }
-
-    // changeMaritalStatusHandler = (event) =>{
-    //     this.setState({maritalStatus: event.target.value});
-    // }
-
-    // changeRelationshipHandler = (event) =>{
-    //     this.setState({relationship: event.target.value});
-    // }
-
-
+ 
     render() {
         return (
             <div>       
@@ -219,6 +195,9 @@ class UpdateCreateComponent extends Component
                                         <input placeholder="Age" name="age"
                                             className="form-control" value = {this.state.age} 
                                             onChange = {this.handleChange}/>
+                                    <div style={{ fontSize: 12, color: "red" }}> {this.state.ageError} </div>    
+
+
                                     </div>
                                     
                                     <div className="form-group">
