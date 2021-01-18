@@ -48,11 +48,7 @@ export default class Navigation extends Component {
 
                                     <li className="nav-item active">
                                         <a className="nav-link " href="#title"><i class="fa fa-fw fa-home"></i>&nbsp;Home <span class="sr-only">(current)</span></a>
-                                    </li>
-
-                                    <li className="nav-item">
-                                        <a className="nav-link " href="#features"><i class="fas fa-users"></i>&nbsp;About</a>
-                                    </li>
+                                    </li>                                    
 
                                     <li className="nav-item">
                                         <a className="nav-link " href="#testimonials"><i class="far fa-images"></i>&nbsp;Gallery</a>
