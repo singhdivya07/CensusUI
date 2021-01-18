@@ -1,69 +1,101 @@
-import React, {Component} from "react";
-import {CanvasJSChart} from 'canvasjs-react-charts'
-class Chart extends Component {
-	render() {
-		const options = {
-			theme: "light",
-			animationEnabled: true,
-			exportFileName: "Gender",
-			exportEnabled: true,
-			title:{
-				text: "Gender Ratio"
-			},
-			data: [{
-				type: "pie",
-				showInLegend: true,
-				legendText: "{label}",
-				toolTipContent: "{label}: <strong>{y}%</strong>",
-				indexLabel: "{y}%",
-				indexLabelPlacement: "inside",
-				dataPoints: [
-					{ y: 54, label: "Male" },
-					{ y: 39, label: "Female" },
-					{ y: 7, label: "Other" },
-					
-				]
-      }]
-      
-    }
-    
-    const options1 = {
-			theme: "light",
-			animationEnabled: true,
-			exportFileName: "Gender",
-			exportEnabled: true,
-			title:{
-				text: "Age Categories"
-			},
-			data: [{
-				type: "pie",
-				showInLegend: true,
-				legendText: "{label}",
-				toolTipContent: "{label}: <strong>{y}%</strong>",
-				indexLabel: "{y}%",
-				indexLabelPlacement: "inside",
-				dataPoints: [
-					{ y: 40, label: "Age Between 20 to 50" },
-					{ y: 35, label: "Age Between 01 to 19" },
-					{ y: 25, label: "After 51" },
-					
-				]
-      }]
-      
-		}
-		return (
-		<div>
-      <CanvasJSChart options = {options}
-      
-				/* onRef={ref => this.chart = ref} */
-      />
-      <CanvasJSChart options = {options1}
-      
-				/* onRef={ref => this.chart = ref} */
-			/>
-			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
-		</div>
-		);
-	}
-}
-export default Chart;     
+
+
+import React, { Component } from 'react'  
+import axios from 'axios';  
+import { Pie } from 'react-chartjs-2';  
+import { faMale } from '@fortawesome/free-solid-svg-icons';
+export class Chart extends Component {  
+        constructor(props) {  
+                super(props);  
+                this.state = { Data: {} };  
+        }  
+        componentDidMount() {  
+                axios.get('http://localhost:8081/api/member')  
+                        .then(res => {  
+                                console.log(res);  
+                                const ipl = res.data; 
+                                // let firstName = [];  
+								// let age = [];  
+								let Gender = [];
+								let cnt = [];
+								let count=0;
+								let count1=0;
+								let count2=0;
+                                ipl.forEach(record => {  
+								
+									Gender.push(record.gender);
+								// 	if(record.gender==="Male")
+								// 	count=count+1;
+								//    if((gender.push(record.gender))==="0")
+								// 	 count=count+1;
+								// 	 else if((gender.push(record.gender))==="1")
+								// 	 count1=count1+1;
+								// 	 else
+								// 	 count2=count2+1;
+
+								// 	 console.log(count);
+                                        
+								});  
+
+
+								
+								console.log(count);
+								console.log(count1);
+								cnt[0]=2;
+								cnt[1]=50;
+								cnt[2]=48;
+                                this.setState({  
+                                        Data: {  
+										
+											labels: Gender,
+												//labels: firstName,  
+												// label:"Male",
+												// label:"Female",
+												// label:"Other",
+                                                datasets: [  
+                                                        {  
+                                                                label: 'IPL 2018/2019 Top Run Scorer',  
+																
+																data:cnt,
+                                                                backgroundColor: [  
+                                                                        "#3cb371",  
+                                                                        "#0000FF",  
+                                                                        "#9966FF",  
+                                                                        "#4C4CFF",  
+                                                                        "#00FFFF",  
+                                                                        "#f990a7",  
+                                                                        "#aad2ed",  
+                                                                        "#FF00FF",  
+                                                                        "Blue",  
+
+                                                                        "Red"  
+
+                                                                ]  
+
+                                                        }  
+
+                                                ]  
+
+                                        }  
+
+                                });  
+
+                        })  
+        }  
+        render() {  
+                return (  
+                        <div>  
+
+                                <Pie  
+                                      
+                                        data={this.state.Data}  
+
+                                        options={{ maintainAspectRatio: false }} />  
+
+                        </div>  
+
+                )  
+        }  
+}  
+
+export default Chart;
